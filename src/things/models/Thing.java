@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package things.model;
+package things.models;
 import java.sql.Types;
 import net.java.ao.Entity;
 import net.java.ao.schema.SQLType;
