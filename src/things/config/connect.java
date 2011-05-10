@@ -17,5 +17,6 @@ public class connect {
         this.Em = new EntityManager("jdbc:mysql://localhost/test",this.db_user,this.db_pass);
     }
     
+    
 }
 
