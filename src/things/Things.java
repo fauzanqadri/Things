@@ -4,9 +4,11 @@
  */
 package things;
 
+import java.awt.Color;
 import java.util.Scanner;
 import things.controllers.login;
 import things.sessions.User_session;
+import things.views.AnimatedTextField;
 
 /**
  *
@@ -18,10 +20,13 @@ public class Things {
      * @param args the command line arguments
      */
     public static void main(String[] args) {  
-        System.out.println("Hallo");
+        //System.out.println("Hallo");
+        AnimatedTextField form = new AnimatedTextField("Asuh", true, new Color(49,79,79), true);
+        form.setVisible(true);
+
         
         // User Session Teter
-        /*
+        
         Scanner input = new Scanner(System.in);
         System.out.print("Masukan Nama :");
         String nama = input.nextLine();
@@ -40,7 +45,7 @@ public class Things {
         System.out.println(User_session.user_name);
         }else{
          System.out.println(User_session.user_name);
-        }*/
+        }
         
     }
 }

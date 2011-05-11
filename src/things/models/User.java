@@ -4,10 +4,13 @@
  */
 package things.models;
 
+import net.java.ao.Entity;
+
 /**
  *
  * @author fauzan
  */
-public interface User {
+public interface User extends Entity{
+    
     
 }
