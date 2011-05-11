@@ -23,7 +23,7 @@ public interface Thing extends Entity{
     public void setM_date(String M_date);
     public String getM_date();
     
-    public void setStatus();
+    public void setStatus(Status status);
     public Status getStatus();
     
     public void setPriority(Priority priority);
