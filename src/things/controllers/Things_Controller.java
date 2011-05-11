@@ -4,20 +4,32 @@
  */
 package things.controllers;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import net.java.ao.EntityManager;
 import things.config.connect;
+import things.models.Thing;
 
 /**
  *
  * @author fauzan
  */
-public class Things_Controller extends connect{
+public class Things_Controller {
+   // public Thing[] thing;
+    public EntityManager connect = new connect().Em;
     
-    public Things_Controller(){
-        super();
-    }
-    
-    public void getThings(){
         
+    public Thing[] getThings(){
+        Thing[] thing = null;
+        try {
+            thing = connect.find(Thing.class);
+            while(thing.length<1){
+                thing =null;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Things_Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return thing;
     }
-    
 }

@@ -4,13 +4,14 @@
  */
 package things.models;
 
+import net.java.ao.Entity;
 import net.java.ao.OneToMany;
 
 /**
  *
  * @author fauzan
  */
-public interface Priority {
+public interface Priority extends Entity{
     
     public String getPriority(String Priority);
     public void setPriority();

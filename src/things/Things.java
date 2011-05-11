@@ -3,48 +3,18 @@
  * and open the template in the editor.
  */
 package things;
-
-import java.awt.Color;
-import java.util.Scanner;
-import things.controllers.login;
-import things.sessions.User_session;
-import things.views.AnimatedTextField;
+import things.controllers.Things_Controller;
+import things.models.Thing;
 
 /**
  *
  * @author fauzan
  */
 public class Things {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {  
-        //System.out.println("Hallo");
-        AnimatedTextField form = new AnimatedTextField("Asuh", true, new Color(49,79,79), true);
-        form.setVisible(true);
-
-        
-        // User Session Teter
-        
-        Scanner input = new Scanner(System.in);
-        System.out.print("Masukan Nama :");
-        String nama = input.nextLine();
-        System.out.print("Masukan ID :");
-        int id = input.nextInt();
-      
-        login set = new login();
-        set.do_login(nama, id);
-        System.out.println("--------------------------------\n");
-        System.out.println(User_session.user_name);
-        
-        System.out.println("Logout ? y/n");
-        String choose = input.next();
-        if(choose.equals("y") || choose.equals("Y")){
-        set.do_logout();
-        System.out.println(User_session.user_name);
-        }else{
-         System.out.println(User_session.user_name);
+    public static void main(String[] args){
+        Things_Controller things = new Things_Controller();
+        for (Thing thing : things.getThings()) {
+            System.out.println(thing.getNote());
         }
         
     }

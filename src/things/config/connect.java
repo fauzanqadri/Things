@@ -4,6 +4,7 @@
  */
 package things.config;
 import net.java.ao.EntityManager;
+import net.java.ao.schema.PluralizedNameConverter;
 /**
  *
  * @author fauzan
@@ -14,7 +15,8 @@ public class connect {
     private String db_pass = null;
     
     public connect(){
-        this.Em = new EntityManager("jdbc:mysql://localhost/test",this.db_user,this.db_pass);
+        this.Em = new EntityManager("jdbc:mysql://localhost/things_db",this.db_user,this.db_pass);
+        this.Em.setTableNameConverter(new PluralizedNameConverter());  
     }
     
     

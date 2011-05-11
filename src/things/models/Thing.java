@@ -5,6 +5,7 @@
 package things.models;
 import java.sql.Types;
 import net.java.ao.Entity;
+import net.java.ao.ManyToMany;
 import net.java.ao.schema.SQLType;
 
 /**
@@ -25,13 +26,13 @@ public interface Thing extends Entity{
     public void setStatus();
     public Status getStatus();
     
-    public void setPriority();
+    public void setPriority(Priority priority);
     public Priority getPriority();
     
     public void setDue_time(String Due_time);
     public String getDue_time();
     
-    public void setUser();
+    //public void setUser();
     public User getser();
     
     
