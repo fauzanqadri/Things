@@ -5,6 +5,8 @@
 package things;
 import things.controllers.Things_Controller;
 import things.models.Thing;
+import java.util.Date;
+import java.util.Scanner;
 
 /**
  *
@@ -12,10 +14,15 @@ import things.models.Thing;
  */
 public class Things {
     public static void main(String[] args){
+        Date date = new Date();
+        Scanner in = new Scanner(System.in);
         Things_Controller things = new Things_Controller();
-        for (Thing thing : things.getThings()) {
-            System.out.println(thing.getNote());
-        }
+        System.out.println("insert Note : ");
+        String Note = in.nextLine(); 
+        Thing creatThing = things.creatThing(Note, date);
+        //for (Thing thing : things.getThings()) {
+        //    System.out.println(thing.getNote());
+        //}
         
     }
 }

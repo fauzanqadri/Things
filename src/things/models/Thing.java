@@ -4,6 +4,7 @@
  */
 package things.models;
 import java.sql.Types;
+import java.util.Date;
 import net.java.ao.Entity;
 import net.java.ao.ManyToMany;
 import net.java.ao.schema.SQLType;
@@ -17,10 +18,10 @@ public interface Thing extends Entity{
     public void setNote(String Note);
     public String getNote();
     
-    public void setC_date(String C_date);
+    public void setC_date(Date C_date);
     public String getC_date();
     
-    public void setM_date(String M_date);
+    public void setM_date(Date M_date);
     public String getM_date();
     
     public void setStatus(Status status);

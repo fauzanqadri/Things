@@ -12,9 +12,9 @@ import net.java.ao.OneToMany;
  * @author fauzan
  */
 public interface Priority extends Entity{
+    public void setName(String Priority);
+    public String getName();
     
-    public String getPriority(String Priority);
-    public void setPriority();
     
     @OneToMany
     public Thing[] getThing();
