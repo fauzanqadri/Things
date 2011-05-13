@@ -5,6 +5,7 @@
 package things.models;
 
 import net.java.ao.Entity;
+import net.java.ao.OneToMany;
 
 /**
  *
@@ -12,5 +13,19 @@ import net.java.ao.Entity;
  */
 public interface User extends Entity{
     
+    public void setName(String Name);
+    public String getName();
+    
+    public void setUsername(String Username);
+    public String getUsername();
+    
+    public void setPassword(String Password);
+    public String getPassword();
+    
+    public void setEmail(String Email);
+    public String getEmail();
+    
+    @OneToMany
+    public Thing[] getThing();
     
 }

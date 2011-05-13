@@ -27,43 +27,44 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="jTabbedPane1" min="-2" pref="350" max="-2" attributes="0"/>
+                      <Component id="jTabbedPane1" pref="392" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="viewPlanButton" alignment="0" pref="108" max="32767" attributes="0"/>
-                          <Component id="addPlanButton" alignment="0" pref="108" max="32767" attributes="0"/>
-                          <Component id="jButton4" alignment="0" pref="108" max="32767" attributes="0"/>
-                          <Component id="modifyPlanButton" alignment="1" pref="108" max="32767" attributes="0"/>
-                      </Group>
                   </Group>
-                  <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="addPlanButton" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="viewPlanButton" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="modifyPlanButton" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="146" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="156" max="32767" attributes="0"/>
+                      <Component id="jButton4" min="-2" pref="109" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jTabbedPane1" pref="383" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="97" max="-2" attributes="0"/>
-                      <Component id="addPlanButton" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="viewPlanButton" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="modifyPlanButton" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="214" max="32767" attributes="0"/>
-                      <Component id="jButton4" min="-2" max="-2" attributes="0"/>
-                  </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButton4" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
+              <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+              <Component id="jTabbedPane1" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="addPlanButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="viewPlanButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="modifyPlanButton" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -89,7 +90,7 @@
           <SubComponents>
             <Component class="javax.swing.JList" name="highPriorityList">
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="Things_Controller things = new Things_Controller();&#xa;DefaultListModel listModel = new DefaultListModel();&#xa;for (Thing thing : things.getThings()) {&#xa;listModel.addElement(thing.getDue_time());&#xa;//System.out.println(thing.getNote());&#xa;}&#xa;&#xa;&#xa;//listModel.addElement(&quot;another&quot;);&#xa;highPriorityList = new JList(listModel);"/>
+                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="Things_Controller things = new Things_Controller();&#xa;DefaultListModel listModel = new DefaultListModel();&#xa;for (Thing thing : things.getThings()) {&#xa;listModel.addElement(thing.getDue_time()+&quot;&quot;+thing.getStatus());&#xa;//System.out.println(thing.getNote());&#xa;}&#xa;&#xa;&#xa;//listModel.addElement(&quot;another&quot;);&#xa;highPriorityList = new JList(listModel);"/>
               </AuxValues>
             </Component>
           </SubComponents>
@@ -157,7 +158,7 @@
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Ubuntu" size="36" style="1"/>
+          <Font name="Ubuntu" size="18" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Fauzan&apos;s Plan"/>
       </Properties>
@@ -166,6 +167,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Add Plan"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addPlanButtonActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="viewPlanButton">
       <Properties>
@@ -176,6 +180,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Modify Plan"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="modifyPlanButtonActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButton4">
       <Properties>

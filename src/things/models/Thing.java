@@ -33,7 +33,7 @@ public interface Thing extends Entity{
     public void setDue_time(String Due_time);
     public String getDue_time();
     
-    //public void setUser();
+    public void setUser(User user);
     public User getser();
     
     

@@ -12,7 +12,7 @@ public class User_session {
    public static String user_name;
    public static Boolean is_login;
    public static int user_id;
-   public User_session user_data;
+   //public User_session user_data;
    
    public User_session(String user_name, int user_id){
     User_session.user_name = user_name;
