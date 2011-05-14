@@ -48,6 +48,7 @@ public class Things_view extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
+        //view.viewMainThingByHighPriority(highPriorityList);
         Things_Controller things = new Things_Controller();
         DefaultListModel listModel = new DefaultListModel();
         for (Thing thing : things.getThings()) {
@@ -153,6 +154,7 @@ public class Things_view extends javax.swing.JFrame {
             ModifyPlan_Form a = new  ModifyPlan_Form();
             a.Note.setText(thing.getNote());
             a.dueDateField.setText(thing.getDue_time());
+            a.id = thing.getId();
             a.setVisible(true);
         }
         
@@ -171,7 +173,7 @@ public class Things_view extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addPlanButton;
-    private javax.swing.JList highPriorityList;
+    protected javax.swing.JList highPriorityList;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;

@@ -14,6 +14,7 @@ import things.config.connect;
 import things.models.Priority;
 import things.models.Status;
 import things.models.Thing;
+import java.util.Date;
 
 /**
  *
@@ -22,7 +23,7 @@ import things.models.Thing;
 public class Things_Controller {
    // public Thing[] thing;
     public EntityManager connect = new connect().Em;
-    
+    private Date date = new Date();
         
     public Thing[] getThings(){
         Thing[] thing = null;
@@ -51,8 +52,8 @@ public class Things_Controller {
             
             Thing thing = this.connect.create(Thing.class);            
             thing.setNote(Note);
-            thing.setC_date(Date);
-            thing.setM_date(Date);
+            thing.setC_date(this.date);
+            thing.setM_date(this.date);
             thing.setStatus(status);
             thing.setPriority(priority);
             thing.save();
@@ -107,6 +108,21 @@ public class Things_Controller {
             Logger.getLogger(Things_Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
         return status;
+    }
+    
+    public Thing[] updateThing(int id, String Note, String dueDate){
+        Thing[] thing = null;
+        
+        try {
+            thing = connect.find(Thing.class, Query.select().where("id = ?", id).limit(1));
+            thing[0].setNote(Note);
+            thing[0].setM_date(this.date);
+            thing[0].setDue_time(dueDate);
+            thing[0].save();
+        } catch (SQLException ex) {
+            Logger.getLogger(Things_Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return thing;
     }
 
 }

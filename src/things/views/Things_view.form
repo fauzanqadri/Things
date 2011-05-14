@@ -90,7 +90,8 @@
           <SubComponents>
             <Component class="javax.swing.JList" name="highPriorityList">
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="Things_Controller things = new Things_Controller();&#xa;DefaultListModel listModel = new DefaultListModel();&#xa;for (Thing thing : things.getThings()) {&#xa;    listModel.addElement(thing.getDue_time());&#xa;}&#xa;&#xa;&#xa;//listModel.addElement(&quot;another&quot;);&#xa;highPriorityList = new JList(listModel);"/>
+                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="//view.viewMainThingByHighPriority(highPriorityList);&#xa;Things_Controller things = new Things_Controller();&#xa;DefaultListModel listModel = new DefaultListModel();&#xa;for (Thing thing : things.getThings()) {&#xa;    listModel.addElement(thing.getDue_time());&#xa;}&#xa;&#xa;//listModel.addElement(&quot;another&quot;);&#xa;highPriorityList = new JList(listModel);"/>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="4"/>
               </AuxValues>
             </Component>
           </SubComponents>
