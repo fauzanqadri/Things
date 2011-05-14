@@ -15,6 +15,8 @@ import net.java.ao.schema.SQLType;
  */
 public interface Thing extends Entity{
     
+    public int getId();
+    
     public void setNote(String Note);
     public String getNote();
     

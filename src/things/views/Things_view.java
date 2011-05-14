@@ -18,12 +18,11 @@ import things.models.Thing;
  * @author fauzan
  */
 public class Things_view extends javax.swing.JFrame {
-
     /** Creates new form Things_view */
     public Things_view() {
         initComponents();
     }
-
+    
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -52,8 +51,7 @@ public class Things_view extends javax.swing.JFrame {
         Things_Controller things = new Things_Controller();
         DefaultListModel listModel = new DefaultListModel();
         for (Thing thing : things.getThings()) {
-            listModel.addElement(thing.getDue_time()+""+thing.getStatus());
-            //System.out.println(thing.getNote());
+            listModel.addElement(thing.getDue_time());
         }
 
         //listModel.addElement("another");
@@ -149,7 +147,15 @@ public class Things_view extends javax.swing.JFrame {
     }//GEN-LAST:event_addPlanButtonActionPerformed
 
     private void modifyPlanButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyPlanButtonActionPerformed
-        System.out.println(highPriorityList.getSelectedValue());
+        Things_Controller things = new Things_Controller();
+        Object date = highPriorityList.getSelectedValue().toString();
+        for (Thing thing : things.singleThing(date)){
+            ModifyPlan_Form a = new  ModifyPlan_Form();
+            a.Note.setText(thing.getNote());
+            a.dueDateField.setText(thing.getDue_time());
+            a.setVisible(true);
+        }
+        
     }//GEN-LAST:event_modifyPlanButtonActionPerformed
 
     /**
