@@ -14,6 +14,7 @@ import java.awt.event.MouseListener;
 import javax.swing.JList;
 import javax.swing.ListCellRenderer;
 import things.models.Thing;
+import things.sessions.User_session;
 
 
 /**
@@ -79,13 +80,11 @@ public class listThingItem extends javax.swing.JPanel implements ListCellRendere
 
     @Override
     public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) { 
-        listThingItem p = this;
-        
-        
+        listThingItem p = this;        
         Thing th = (Thing) value;
         String container = "<html>"
                     +"<div>"
-                    +"<span style='color:red; font-weight:bold'>"
+                    +"<span style='color:green; font-weight:bold'>"
                     +th.getNote()+"</span><br/>"
                     +"<small>"
                     +th.getDue_time()

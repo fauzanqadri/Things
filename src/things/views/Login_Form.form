@@ -1,8 +1,11 @@
 <?xml version="1.1" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.7" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+<Form version="1.5" maxVersion="1.7" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="iconImages" type="java.util.List" editor="org.netbeans.modules.form.ComponentChooserEditor">
+      <ComponentRef name="null"/>
+    </Property>
     <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
@@ -23,17 +26,17 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="icon" alignment="0" pref="366" max="32767" attributes="0"/>
-                  <Component id="passwordField" alignment="0" pref="366" max="32767" attributes="1"/>
-                  <Component id="usernameField" alignment="0" pref="366" max="32767" attributes="1"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="thingsLabel" alignment="0" min="-2" pref="172" max="-2" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="loginButton" min="-2" pref="90" max="-2" attributes="1"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="loginButton" min="-2" pref="135" max="-2" attributes="1"/>
+                      <EmptySpace pref="90" max="32767" attributes="0"/>
                       <Component id="jButton2" min="-2" pref="141" max="-2" attributes="1"/>
                   </Group>
+                  <Component id="passwordField" alignment="0" pref="366" max="32767" attributes="1"/>
+                  <Component id="usernameField" alignment="0" pref="366" max="32767" attributes="1"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -42,13 +45,13 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="29" max="32767" attributes="0"/>
-              <Component id="icon" min="-2" pref="150" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="thingsLabel" pref="122" max="32767" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="usernameField" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="passwordField" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="loginButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -88,10 +91,10 @@
         <Property name="text" type="java.lang.String" value="Add User"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="icon">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jLabel1"/>
-      </Properties>
+    <Component class="javax.swing.JLabel" name="thingsLabel">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="thingsLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource(&quot;/things/views/imgs/things_icon.png&quot;))); // NOI18N"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>

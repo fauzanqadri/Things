@@ -30,7 +30,6 @@ public class Things_Controller {
         try {
             thing = connect.find(Thing.class, Query.select().where("priorityID = ?", "7"));
             while(thing.length<1){
-                System.out.println("null");
                 thing=null;
             }
         } catch (SQLException ex) {
@@ -44,7 +43,6 @@ public class Things_Controller {
             thing = connect.find(Thing.class, Query.select().where("priorityID = ?", "8"));
             while(thing.length<1){
                 thing=null;
-                System.out.println("null");
             }
         } catch (SQLException ex) {
             Logger.getLogger(Things_Controller.class.getName()).log(Level.SEVERE, null, ex);

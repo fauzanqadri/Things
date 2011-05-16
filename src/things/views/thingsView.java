@@ -11,7 +11,6 @@
 package things.views;
 
 import javax.swing.DefaultListModel;
-import javax.swing.SwingUtilities;
 import things.sessions.User_session;
 import things.controllers.Things_Controller;
 import things.models.Thing;
@@ -22,14 +21,11 @@ import things.models.Thing;
  * @author fauzan
  */
 public class thingsView extends javax.swing.JFrame  {
-    private Things_Controller thing = new Things_Controller();
-    private addThing At = new addThing();
-    listThingItem lti = new listThingItem();
+    private Things_Controller thing;
    
     /** Creates new form thingsView */
     public thingsView() {
         initComponents();
-        
     }
     
 
@@ -54,8 +50,7 @@ public class thingsView extends javax.swing.JFrame  {
         justRemindMePriorityList = new javax.swing.JList();
         logoutButton = new javax.swing.JButton();
         addThingButton = new javax.swing.JButton();
-        viewButton = new javax.swing.JButton();
-        editButton = new javax.swing.JButton();
+        userIdentitiy = new javax.swing.JLabel();
 
         jList1.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -104,19 +99,7 @@ public class thingsView extends javax.swing.JFrame  {
             }
         });
 
-        viewButton.setText("View Plan");
-        viewButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                viewButtonActionPerformed(evt);
-            }
-        });
-
-        editButton.setText("Edit");
-        editButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editButtonActionPerformed(evt);
-            }
-        });
+        userIdentitiy.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -125,17 +108,13 @@ public class thingsView extends javax.swing.JFrame  {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(logoutButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(userIdentitiy)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 135, Short.MAX_VALUE)
+                        .addComponent(logoutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(userIdentity, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(editButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 132, Short.MAX_VALUE)
-                                .addComponent(addThingButton)))
-                        .addGap(18, 18, 18)
-                        .addComponent(viewButton)))
+                    .addComponent(userIdentity)
+                    .addComponent(addThingButton, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -144,14 +123,13 @@ public class thingsView extends javax.swing.JFrame  {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(userIdentity)
-                    .addComponent(logoutButton))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(logoutButton)
+                        .addComponent(userIdentitiy)))
                 .addGap(12, 12, 12)
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(viewButton)
-                    .addComponent(addThingButton)
-                    .addComponent(editButton))
+                .addComponent(addThingButton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -162,10 +140,6 @@ public class thingsView extends javax.swing.JFrame  {
         // TODO add your handling code here:
 }//GEN-LAST:event_jTabbedPane1FocusGained
 
-    private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
-        
-}//GEN-LAST:event_editButtonActionPerformed
-
     private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
         User_session sess = new User_session(false);
         this.dispose();
@@ -173,43 +147,41 @@ public class thingsView extends javax.swing.JFrame  {
 }//GEN-LAST:event_logoutButtonActionPerformed
 
     private void addThingButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addThingButtonActionPerformed
+        addThing At = new addThing();
         At.setVisible(true);
 }//GEN-LAST:event_addThingButtonActionPerformed
 
-    private void viewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewButtonActionPerformed
-        // TODO add your handling code here:
-}//GEN-LAST:event_viewButtonActionPerformed
-
     public void getHighPriorityThings(){
-       
+      thing  = new Things_Controller();
+      //int id = User_session.current_user.getID();
        DefaultListModel listModel = new DefaultListModel();
         for(Thing things : thing.getHighPriorityThings()){
             listModel.addElement(things);
         }
         
         highPriorityList.setModel(listModel); 
-        highPriorityList.setCellRenderer(lti);
-        
-        
+        highPriorityList.setCellRenderer(new listThingItem());
     }
    
     public void getNormalPriorityThings(){
+        thing = new Things_Controller();
      DefaultListModel listModel = new DefaultListModel();
         for(Thing things : thing.getNormalPriorityThings()){
              listModel.addElement(things);
         }
         
         normalPriorityList.setModel(listModel);
-        normalPriorityList.setCellRenderer(lti);
+        normalPriorityList.setCellRenderer(new listThingItem());
     }
     
     public void getJustRemindMePriorityThings(){
+        thing = new Things_Controller();
     DefaultListModel listModel = new DefaultListModel();
         for(Thing things : thing.getJustRemindMePriorityThings()){
               listModel.addElement(things);
         }
         justRemindMePriorityList.setModel(listModel);
-        justRemindMePriorityList.setCellRenderer(lti);
+        justRemindMePriorityList.setCellRenderer(new listThingItem());
         
     }
     
@@ -221,7 +193,6 @@ public class thingsView extends javax.swing.JFrame  {
      */
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addThingButton;
-    private javax.swing.JButton editButton;
     private javax.swing.JList highPriorityList;
     private javax.swing.JList jList1;
     private javax.swing.JScrollPane jScrollPane1;
@@ -232,7 +203,7 @@ public class thingsView extends javax.swing.JFrame  {
     private javax.swing.JList justRemindMePriorityList;
     private javax.swing.JButton logoutButton;
     private javax.swing.JList normalPriorityList;
+    protected javax.swing.JLabel userIdentitiy;
     protected javax.swing.JLabel userIdentity;
-    private javax.swing.JButton viewButton;
     // End of variables declaration//GEN-END:variables
 }

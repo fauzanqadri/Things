@@ -9,31 +9,19 @@
  * Created on May 12, 2011, 7:19:29 PM
  */
 package things.views;
-import javax.swing.JOptionPane;
+import javax.swing.*;
 import things.controllers.login;
 import things.sessions.User_session;
+//import things.sessions.User_session;
 /**
  *
  * @author fauzan
  */
 public class Login_Form extends javax.swing.JFrame {
-    // just testing, to revert romove _1 from thingView_1
-    private thingsView tv = new thingsView();
-    /** Creates new form Login_Form */
+    
     public Login_Form() {
       
         initComponents();
-          String contain = "<html>"
-                  + "<div style='width:300px'>"
-                  + "<div style='float:left; width:150px'>"
-                  + "<img  src='http://learn2mac.com/appoftheweek/wp-content/uploads/2010/04/things_icon.png'/>"
-                  + "</div>"
-                  + "<div style='float:left; width:100px'>"
-                  + "<h1>Things</h1>"
-                  + "</div><div style='clear:both'></div>"
-                  + "</div>"
-                  + "</html>";
-        this.icon.setText(contain);
     }
 
     /** This method is called from within the constructor to
@@ -49,9 +37,10 @@ public class Login_Form extends javax.swing.JFrame {
         passwordField = new javax.swing.JPasswordField();
         loginButton = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        icon = new javax.swing.JLabel();
+        thingsLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setIconImages(null);
         setResizable(false);
 
         usernameField.setText("Username");
@@ -77,34 +66,34 @@ public class Login_Form extends javax.swing.JFrame {
 
         jButton2.setText("Add User");
 
-        icon.setText("jLabel1");
+        thingsLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/things/views/imgs/things_icon.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(icon, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 366, Short.MAX_VALUE)
-                    .addComponent(passwordField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 366, Short.MAX_VALUE)
-                    .addComponent(usernameField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 366, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(thingsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(passwordField, javax.swing.GroupLayout.DEFAULT_SIZE, 366, Short.MAX_VALUE)
+                    .addComponent(usernameField, javax.swing.GroupLayout.DEFAULT_SIZE, 366, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(29, Short.MAX_VALUE)
-                .addComponent(icon, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addContainerGap()
+                .addComponent(thingsLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(usernameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(loginButton)
                     .addComponent(jButton2))
@@ -123,11 +112,9 @@ public class Login_Form extends javax.swing.JFrame {
     }//GEN-LAST:event_passwordFieldMouseClicked
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
-        if(doLogin()==true){
+       if(doLogin()==true){
             this.dispose();
-            tv.setVisible(true);
-            tv.userIdentity.setText(User_session.user_name+"'s Plan");
-        }
+        }        
     }//GEN-LAST:event_loginButtonActionPerformed
 
     /**
@@ -140,21 +127,26 @@ public class Login_Form extends javax.swing.JFrame {
         login login = new login();
         String username = this.usernameField.getText();
         String password = this.passwordField.getText();
-        if (login.do_login(username, password)==true) {
+        if (login.do_login(username, password) == true) {
+            thingsView tv = new thingsView();
             JOptionPane.showMessageDialog(null, "Success");
+            tv.userIdentity.setText(User_session.current_user.getName()+"'s Plans");
+            tv.setVisible(true);
             log = true;
         }else{
+            thingsView tv = new thingsView();
             JOptionPane.showMessageDialog(null, "Something Wrong with your password");
+            tv.setVisible(false);
             log = false;
         }
         return log;
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel icon;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton loginButton;
     private javax.swing.JPasswordField passwordField;
+    private javax.swing.JLabel thingsLabel;
     private javax.swing.JTextField usernameField;
     // End of variables declaration//GEN-END:variables
 }
