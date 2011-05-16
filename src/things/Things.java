@@ -3,16 +3,9 @@
  * and open the template in the editor.
  */
 package things;
-
-import java.sql.SQLException;
-import net.java.ao.EntityManager;
-import things.config.connect;
-import things.models.Thing;
-import java.util.Date;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import things.views.Login_Form;
-
 
 /**
  *
@@ -38,7 +31,6 @@ public class Things {
     }
 
       new Login_Form().setVisible(true);
-        
     }
     /*
     connect connect = new connect();  

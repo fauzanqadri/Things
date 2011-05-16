@@ -10,8 +10,9 @@
  */
 package things.views;
 
+import java.util.Date;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JTextArea;
+import javax.swing.SpinnerDateModel;
 import things.controllers.Things_Controller;
 import things.models.Status;
 import things.models.Priority;
@@ -22,8 +23,10 @@ import things.models.Thing;
  */
 public class ModifyPlan_Form extends javax.swing.JFrame {
     private Things_Controller things = new Things_Controller();
+    private Date date = new Date();
     private int id ;
     private Thing thing;
+    
     public ModifyPlan_Form(int id) {
         Thing aThing = things.singleThing(id);
         this.id = id;
@@ -31,7 +34,6 @@ public class ModifyPlan_Form extends javax.swing.JFrame {
        
         initComponents();
         this.Note.setText(this.thing.getNote());
-        
     }
     
     /** This method is called from within the constructor to
@@ -53,7 +55,6 @@ public class ModifyPlan_Form extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
         jLabel5 = new javax.swing.JLabel();
-        dueDateField = new javax.swing.JTextField();
         jSeparator4 = new javax.swing.JSeparator();
         saveButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
@@ -61,6 +62,8 @@ public class ModifyPlan_Form extends javax.swing.JFrame {
         statusCombo = new javax.swing.JComboBox();
         jLabel6 = new javax.swing.JLabel();
         jSeparator5 = new javax.swing.JSeparator();
+        SpinnerDateModel model = new SpinnerDateModel();
+        dueDateSpin = new javax.swing.JSpinner(model);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -97,17 +100,14 @@ public class ModifyPlan_Form extends javax.swing.JFrame {
             }
         });
 
-        DefaultComboBoxModel setModel = new DefaultComboBoxModel();
-        for(Priority priority : things.getPriority()){
-            priorityCombo.addItem(priority.getName());
-        }
+        getPriority();
 
-        for(Status status : things.getStatusValue()){
-            statusCombo.addItem(status.getName());
-        }
+        getStatus();
 
         jLabel6.setFont(new java.awt.Font("Ubuntu", 0, 10));
         jLabel6.setText("*don't Edit date Separator");
+
+        dueDateSpin.setValue(date);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -130,8 +130,8 @@ public class ModifyPlan_Form extends javax.swing.JFrame {
                     .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 399, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
-                        .addComponent(dueDateField, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(49, 49, 49)
+                        .addComponent(dueDateSpin, javax.swing.GroupLayout.DEFAULT_SIZE, 282, Short.MAX_VALUE))
                     .addComponent(jSeparator4, javax.swing.GroupLayout.DEFAULT_SIZE, 399, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel6)
@@ -174,7 +174,7 @@ public class ModifyPlan_Form extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(dueDateField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(dueDateSpin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 6, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -183,29 +183,49 @@ public class ModifyPlan_Form extends javax.swing.JFrame {
                         .addComponent(cancelButton)
                         .addComponent(saveButton))
                     .addComponent(jLabel6))
-                .addGap(17, 17, 17))
+                .addGap(27, 27, 27))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
-        String a = this.priorityCombo.getSelectedItem().toString();
-        //String b = this.statusCombo.getSelectedItem().toString();
-        things.updateThing(this.id, Note.getText(), dueDateField.getText() );
+        save();
+        this.dispose();
     }//GEN-LAST:event_saveButtonActionPerformed
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
         this.dispose();
     }//GEN-LAST:event_cancelButtonActionPerformed
 
+    
+    public void save(){
+        String priority = this.priorityCombo.getSelectedItem().toString();
+        String status = this.statusCombo.getSelectedItem().toString();
+        SpinnerDateModel dt = (SpinnerDateModel) this.dueDateSpin.getModel();
+        Date dueDate = dt.getDate();
+        things.updateThing(this.id, Note.getText(),dueDate, priority, status );
+    }
+    
+    public void getPriority(){
+        DefaultComboBoxModel setModel = new DefaultComboBoxModel();
+        for(Priority priority : things.getPriority()){
+            priorityCombo.addItem(priority.getName());
+        }
+    }
+    
+    public void getStatus(){
+        for(Status status : things.getStatusValue()){
+            statusCombo.addItem(status.getName());
+        }
+    }
     /**
      * @param args the command line arguments
      */
     // Variables declaration - do not modify//GEN-BEGIN:variables
     protected javax.swing.JTextArea Note;
     private javax.swing.JButton cancelButton;
-    protected javax.swing.JTextField dueDateField;
+    private javax.swing.JSpinner dueDateSpin;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

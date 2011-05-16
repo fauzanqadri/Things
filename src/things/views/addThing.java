@@ -10,11 +10,9 @@
  */
 package things.views;
 
-import java.awt.event.ActionEvent;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerDateModel;
 import java.util.Date;
-import java.util.Locale;
 import things.controllers.Things_Controller;
 import things.models.Priority;
 import things.models.Thing;
@@ -59,6 +57,7 @@ public class addThing extends javax.swing.JFrame {
         priorityCombo = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Add Plan");
 
         jLabel1.setFont(new java.awt.Font("Ubuntu", 1, 24));
         jLabel1.setText("Add Plan");
@@ -172,7 +171,6 @@ public class addThing extends javax.swing.JFrame {
         for (Priority pr : things.getPriority()) {
             this.priorityCombo.addItem(pr.getName());
         }
-        this.dispose();
     }
     
     public void save(){

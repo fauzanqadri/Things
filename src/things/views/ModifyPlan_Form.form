@@ -41,8 +41,8 @@
                   <Component id="jSeparator3" alignment="1" pref="399" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="49" max="32767" attributes="0"/>
-                      <Component id="dueDateField" min="-2" pref="282" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
+                      <Component id="dueDateSpin" pref="282" max="32767" attributes="0"/>
                   </Group>
                   <Component id="jSeparator4" alignment="0" pref="399" max="32767" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
@@ -94,7 +94,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="dueDateField" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="dueDateSpin" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jSeparator4" min="-2" pref="6" max="-2" attributes="0"/>
@@ -106,7 +106,7 @@
                   </Group>
                   <Component id="jLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -176,11 +176,6 @@
         <Property name="text" type="java.lang.String" value="Due Date"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="dueDateField">
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="4"/>
-      </AuxValues>
-    </Component>
     <Component class="javax.swing.JSeparator" name="jSeparator4">
     </Component>
     <Component class="javax.swing.JButton" name="saveButton">
@@ -201,14 +196,13 @@
     </Component>
     <Component class="javax.swing.JComboBox" name="priorityCombo">
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="for(Priority priority : things.getPriority()){&#xa;    priorityCombo.addItem(priority.getName());&#xa;}"/>
-        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="DefaultComboBoxModel setModel = new DefaultComboBoxModel();"/>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="getPriority();"/>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value=""/>
       </AuxValues>
     </Component>
     <Component class="javax.swing.JComboBox" name="statusCombo">
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="for(Status status : things.getStatusValue()){&#xa;statusCombo.addItem(status.getName());&#xa;}"/>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="getStatus();"/>
       </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel6">
@@ -220,6 +214,13 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JSeparator" name="jSeparator5">
+    </Component>
+    <Component class="javax.swing.JSpinner" name="dueDateSpin">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JSpinner(model)"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="SpinnerDateModel model = new SpinnerDateModel();"/>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="dueDateSpin.setValue(date);"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>

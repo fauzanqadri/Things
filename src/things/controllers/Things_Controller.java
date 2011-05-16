@@ -37,6 +37,7 @@ public class Things_Controller {
         }
         return thing;
     }
+    
     public Thing[] getNormalPriorityThings(){
         Thing[] thing = null;
         try {
@@ -75,7 +76,6 @@ public class Things_Controller {
             }
             
             Priority[] priority = connect.find(Priority.class, Query.select().where("name = ?", priority_name).limit(1));
-            //String pr = priority[0].getName();
             System.out.println(priority[0].getName());
             if (priority.length==0) {
                 priority = null;
@@ -156,17 +156,37 @@ public class Things_Controller {
         return status;
     }
     
-    public Thing[] updateThing(int id, String Note, String dueDate){
+    public Thing[] updateThing(int id, String Note, Date dueDate, String pr, String sts ){
         Thing[] thing = null;
         
         try {
             thing = connect.find(Thing.class, Query.select().where("id = ?", id).limit(1));
-            thing[0].setNote(Note);
-            thing[0].setM_date(this.date);
-            thing[0].setDue_time(this.date);
-            //thing[0].setPriority(priority);
-            //thing[0].setStatus(status);
-            thing[0].save();
+             
+            Priority[] priority = connect.find(Priority.class, Query.select().where("name = ? ", pr));
+            Status[] status = connect.find(Status.class, Query.select().where("name = ? ", sts));
+            if (priority.length==0) {
+                priority = null;
+            }else if(status.length==0){
+                status=null;
+            }else{
+                thing[0].setPriority(priority[0]);
+                thing[0].setStatus(status[0]);
+                thing[0].setNote(Note);
+                thing[0].setM_date(this.date);
+                thing[0].setDue_time(this.date);
+                thing[0].save();
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Things_Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return thing;
+    }
+    
+    public Thing[] deleteThing(int id){
+        Thing[] thing = null;
+        try {
+            thing = connect.find(Thing.class , Query.select().where("id = ?", id));
+            thing[0].getEntityManager().delete(thing);
         } catch (SQLException ex) {
             Logger.getLogger(Things_Controller.class.getName()).log(Level.SEVERE, null, ex);
         }

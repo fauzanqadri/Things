@@ -60,6 +60,7 @@ public class thingsView extends javax.swing.JFrame  {
         jScrollPane1.setViewportView(jList1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle(User_session.current_user.getName()+"'s Plan");
         setResizable(false);
 
         userIdentity.setFont(new java.awt.Font("Ubuntu", 1, 18));
@@ -99,7 +100,8 @@ public class thingsView extends javax.swing.JFrame  {
             }
         });
 
-        userIdentitiy.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+        userIdentitiy.setFont(new java.awt.Font("Ubuntu", 1, 18));
+        userIdentitiy.setText(User_session.current_user.getName()+"'s Plans");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

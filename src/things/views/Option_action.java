@@ -9,13 +9,13 @@
  * Created on May 16, 2011, 8:17:41 PM
  */
 package things.views;
-
+import things.controllers.Things_Controller;
 /**
  *
  * @author fauzan
  */
 public class Option_action extends javax.swing.JFrame {
-
+    private Things_Controller thing = new Things_Controller();
     /** Creates new form Option_action */
     private int thing_id ;
     public Option_action(int id) {
@@ -38,6 +38,7 @@ public class Option_action extends javax.swing.JFrame {
         delete = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Alert");
         setResizable(false);
 
         jLabel1.setText("Have You done this Thing ?"+this.thing_id);
@@ -96,13 +97,10 @@ public class Option_action extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
-        // TODO add your handling code here:
-       
-        this.dispose();
+        thing.deleteThing(this.thing_id);
     }//GEN-LAST:event_deleteActionPerformed
 
     private void doneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_doneActionPerformed
-        
          this.dispose();
     }//GEN-LAST:event_doneActionPerformed
 

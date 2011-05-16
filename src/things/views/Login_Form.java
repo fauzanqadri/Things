@@ -40,6 +40,7 @@ public class Login_Form extends javax.swing.JFrame {
         thingsLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Things 10.10 10.6.7 BETA");
         setIconImages(null);
         setResizable(false);
 
@@ -130,7 +131,6 @@ public class Login_Form extends javax.swing.JFrame {
         if (login.do_login(username, password) == true) {
             thingsView tv = new thingsView();
             JOptionPane.showMessageDialog(null, "Success");
-            tv.userIdentity.setText(User_session.current_user.getName()+"'s Plans");
             tv.setVisible(true);
             log = true;
         }else{
