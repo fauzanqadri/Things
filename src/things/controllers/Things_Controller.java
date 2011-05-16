@@ -5,7 +5,6 @@
 package things.controllers;
 
 import java.sql.SQLException;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import net.java.ao.EntityManager;
@@ -15,6 +14,7 @@ import things.models.Priority;
 import things.models.Status;
 import things.models.Thing;
 import java.util.Date;
+import things.sessions.User_session;
 
 /**
  *
@@ -24,13 +24,27 @@ public class Things_Controller {
    // public Thing[] thing;
     public EntityManager connect = new connect().Em;
     private Date date = new Date();
-        
-    public Thing[] getThings(){
+    
+    public Thing[] getHighPriorityThings(){
         Thing[] thing = null;
         try {
-            thing = connect.find(Thing.class);
+            thing = connect.find(Thing.class, Query.select().where("priorityID = ?", "7"));
             while(thing.length<1){
-                thing =null;
+                System.out.println("null");
+                thing=null;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Things_Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return thing;
+    }
+    public Thing[] getNormalPriorityThings(){
+        Thing[] thing = null;
+        try {
+            thing = connect.find(Thing.class, Query.select().where("priorityID = ?", "8"));
+            while(thing.length<1){
+                thing=null;
+                System.out.println("null");
             }
         } catch (SQLException ex) {
             Logger.getLogger(Things_Controller.class.getName()).log(Level.SEVERE, null, ex);
@@ -38,30 +52,54 @@ public class Things_Controller {
         return thing;
     }
     
-    public Thing creatThing(String Note, Date Date ){
-        
-        Thing thing1 = null;
+    public Thing[] getJustRemindMePriorityThings(){
+        Thing[] thing = null;
         try {
-            Status status = this.connect.create(Status.class);
-            status.setName("Important");
-            status.save();
+            thing = connect.find(Thing.class, Query.select().where("priorityID = ?", "9"));
+            while(thing.length<1){
+                thing=null;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Things_Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return thing;
+    }
             
-            Priority priority = this.connect.create(Priority.class);
-            priority.setName("Normal");            
-            priority.save();
+    public Thing creatThing(String Note, String priority_name,Date dueDate){
+        System.out.println(dueDate);
+        Thing thing1 = null;
+        Thing newT = null;
+        try {
+            Status[] status = connect.find(Status.class, Query.select().where("id = ?", 9));
+            String name = status[0].getName();
+            if (status.length==0) {
+                status = null;
+            }
             
-            Thing thing = this.connect.create(Thing.class);            
-            thing.setNote(Note);
-            thing.setC_date(this.date);
-            thing.setM_date(this.date);
-            thing.setStatus(status);
-            thing.setPriority(priority);
-            thing.save();
+            Priority[] priority = connect.find(Priority.class, Query.select().where("name = ?", priority_name).limit(1));
+            //String pr = priority[0].getName();
+            System.out.println(priority[0].getName());
+            if (priority.length==0) {
+                priority = null;
+            }
+           if(priority != null && status != null){ 
             
-            /*while(thing.getM_date().isEmpty()){
-                thing1 = thing;
-                return thing1;
-            }*/
+            newT = this.connect.create(Thing.class);            
+            newT.setNote(Note);
+            newT.setC_date(this.date);
+            newT.setM_date(this.date);
+            newT.setStatus(status[0]);
+            newT.setPriority(priority[0]);
+            newT.setDue_time(dueDate);
+            newT.setUser(User_session.current_user);
+            newT.save();
+            
+           }else{
+            thing1 = null;
+           }
+              while (newT != null){
+                thing1 = newT;
+            }           
         } catch (SQLException ex) {
             Logger.getLogger(Things_Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -72,7 +110,7 @@ public class Things_Controller {
     public Thing[] singleThing(Object Date){
        Thing[] thing = null;
         try {
-            thing = connect.find(Thing.class, Query.select().where("due_time = ?", Date).limit(1));
+            thing = connect.find(Thing.class, Query.select().where("id = ?", Date).limit(1));
             while(thing.length == 0){
                 thing = null;
             }
@@ -82,7 +120,17 @@ public class Things_Controller {
         
     return thing;
     }
-    
+     public Thing singleThing(int id){
+       
+       Thing thing = null;
+       
+            thing = connect.get(Thing.class, id);
+            while(thing == null){
+                thing = null;
+            }
+ 
+    return thing;
+    }
     public Priority[] getPriority(){
         Priority[] priority = null;
         try {            
@@ -117,7 +165,9 @@ public class Things_Controller {
             thing = connect.find(Thing.class, Query.select().where("id = ?", id).limit(1));
             thing[0].setNote(Note);
             thing[0].setM_date(this.date);
-            thing[0].setDue_time(dueDate);
+            thing[0].setDue_time(this.date);
+            //thing[0].setPriority(priority);
+            //thing[0].setStatus(status);
             thing[0].save();
         } catch (SQLException ex) {
             Logger.getLogger(Things_Controller.class.getName()).log(Level.SEVERE, null, ex);

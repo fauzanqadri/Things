@@ -27,16 +27,21 @@ public interface Thing extends Entity{
     public String getM_date();
     
     public void setStatus(Status status);
+    public void setStatus(int status);
     public Status getStatus();
-    
+   
     public void setPriority(Priority priority);
+    public void setPriority(int priority);
     public Priority getPriority();
     
-    public void setDue_time(String Due_time);
+    public void setDue_time(Date Due_time);
     public String getDue_time();
     
     public void setUser(User user);
-    public User getser();
+    public void setUser(int user);
+    public User getUser();
+    
+   
     
     
 }

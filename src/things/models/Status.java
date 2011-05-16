@@ -12,8 +12,12 @@ import net.java.ao.OneToMany;
  */
 public interface Status extends Entity{
     
+    public int getId();
+    
     public String getName();
     public void setName(String Status);
+    
+    
     
     @OneToMany
     public Thing[] getThing();

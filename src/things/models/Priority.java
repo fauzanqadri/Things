@@ -13,6 +13,8 @@ import net.java.ao.OneToMany;
  */
 public interface Priority extends Entity{
     
+    public int getId();
+    
     public void setName(String Priority);
     public String getName();
     

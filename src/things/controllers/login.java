@@ -21,26 +21,32 @@ public class login {
     public EntityManager connect = new connect().Em;
     public User_session user_data;
     
-    public boolean do_login(String username, String pass){
+    public boolean do_login(String username , String pass){
+      // just for testing
+      username = "ojankill";
+      pass = "helenkill";
       md5Converter md5= new md5Converter();
       String finalpass = md5.convert(pass);
        boolean status  = false;
         try {
         User [] user = connect.find(User.class,Query.select().where("username = ?", username).where("password = ?", finalpass)); 
             if(user.length > 0){
-                this.user_data = new User_session(user[0].getUsername(), user[0].getID());
+                this.user_data = new User_session(user[0]);
                 status = true;
+                
             }else{
                 status = false;
+                
             }
         } catch (SQLException ex) {
             Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
         }
+        hasLogin(status);
         return status;
     }
     
-    public void do_logout(){
-    this.user_data = new User_session(false);
+    public boolean hasLogin(boolean var){
+        return var;
     }
     
 }

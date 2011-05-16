@@ -3,53 +3,47 @@
  * and open the template in the editor.
  */
 package things;
-import things.controllers.Things_Controller;
+
+import java.sql.SQLException;
+import net.java.ao.EntityManager;
+import things.config.connect;
 import things.models.Thing;
 import java.util.Date;
-import java.util.Scanner;
-import things.config.md5Converter;
-import things.controllers.login;
-import things.sessions.User_session;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+import things.views.Login_Form;
+
 
 /**
  *
  * @author fauzan
  */
+ 
 public class Things {
-    public static void main(String[] args){
-        //Date date = new Date();
-        Scanner in = new Scanner(System.in);
-        //Things_Controller things = new Things_Controller();
-        //System.out.println("insert Note : ");
-        //String Note = in.nextLine(); 
-        //Thing creatThing = things.creatThing(Note, date);
-        //for (Thing thing : things.getThings()) {
-        //    System.out.println(thing.getNote());
-        //}
-        
-        System.out.println("Insert Username : ");
-        String username = in.next();
-        System.out.println("Insert Password : ");
-        String password = in.next();
-        md5Converter md5 = new md5Converter();
-        //md5.convert(password);
-        
-        
-       
-        login log = new login();
-       // log.do_login(username, password);
-        if(log.do_login(username, password)){
-            System.out.println(User_session.user_name);
-        }else{
-            System.out.println("something wrong, check your password, BITCH !!!");
-        }
-        
-        
-        
-        
-        
-        
-        
+    public static void main(String[] args) {
+      try {
+        UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
+      }
+     catch (UnsupportedLookAndFeelException e) {
+       // handle exception
+    }
+    catch (ClassNotFoundException e) {
+       // handle exception
+    }
+    catch (InstantiationException e) {
+       // handle exception
+    }
+    catch (IllegalAccessException e) {
+       // handle exception
+    }
+
+      new Login_Form().setVisible(true);
         
     }
+    /*
+    connect connect = new connect();  
+    Thing th = connect.Em.create(Thing.class);
+    th
+    */
+    
 }

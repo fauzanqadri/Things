@@ -22,12 +22,16 @@ import things.models.Thing;
  */
 public class ModifyPlan_Form extends javax.swing.JFrame {
     private Things_Controller things = new Things_Controller();
-    
-    protected int id;
-    
-    /** Creates new form ModifyPlan_Form */
-    public ModifyPlan_Form() {
+    private int id ;
+    private Thing thing;
+    public ModifyPlan_Form(int id) {
+        Thing aThing = things.singleThing(id);
+        this.id = id;
+        this.thing = aThing;
+       
         initComponents();
+        this.Note.setText(this.thing.getNote());
+        
     }
     
     /** This method is called from within the constructor to
@@ -186,8 +190,9 @@ public class ModifyPlan_Form extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
-        System.out.println(this.id);
-        things.updateThing(this.id, Note.getText(), dueDateField.getText());
+        String a = this.priorityCombo.getSelectedItem().toString();
+        //String b = this.statusCombo.getSelectedItem().toString();
+        things.updateThing(this.id, Note.getText(), dueDateField.getText() );
     }//GEN-LAST:event_saveButtonActionPerformed
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
@@ -213,7 +218,7 @@ public class ModifyPlan_Form extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
-    protected javax.swing.JComboBox priorityCombo;
+    private javax.swing.JComboBox priorityCombo;
     private javax.swing.JButton saveButton;
     private javax.swing.JComboBox statusCombo;
     // End of variables declaration//GEN-END:variables
