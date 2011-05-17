@@ -32,10 +32,5 @@ public class Things {
 
       new Login_Form().setVisible(true);
     }
-    /*
-    connect connect = new connect();  
-    Thing th = connect.Em.create(Thing.class);
-    th
-    */
     
 }

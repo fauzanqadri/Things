@@ -26,6 +26,7 @@ public class thingsView extends javax.swing.JFrame  {
     /** Creates new form thingsView */
     public thingsView() {
         initComponents();
+        thing.reminder();
     }
     
 

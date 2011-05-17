@@ -15,6 +15,7 @@ import things.models.Status;
 import things.models.Thing;
 import java.util.Date;
 import things.sessions.User_session;
+import things.views.notification;
 
 /**
  *
@@ -29,9 +30,6 @@ public class Things_Controller {
         Thing[] thing = null;
         try {
             thing = connect.find(Thing.class, Query.select().where("priorityID = ?", "7"));
-            while(thing.length<1){
-                thing=null;
-            }
         } catch (SQLException ex) {
             Logger.getLogger(Things_Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -42,9 +40,6 @@ public class Things_Controller {
         Thing[] thing = null;
         try {
             thing = connect.find(Thing.class, Query.select().where("priorityID = ?", "8"));
-            while(thing.length<1){
-                thing=null;
-            }
         } catch (SQLException ex) {
             Logger.getLogger(Things_Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -55,9 +50,6 @@ public class Things_Controller {
         Thing[] thing = null;
         try {
             thing = connect.find(Thing.class, Query.select().where("priorityID = ?", "9"));
-            while(thing.length<1){
-                thing=null;
-            }
         } catch (SQLException ex) {
             Logger.getLogger(Things_Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -164,11 +156,10 @@ public class Things_Controller {
              
             Priority[] priority = connect.find(Priority.class, Query.select().where("name = ? ", pr));
             Status[] status = connect.find(Status.class, Query.select().where("name = ? ", sts));
-            if (priority.length==0) {
+            if (priority.length==0 && status.length==0 ) {
                 priority = null;
-            }else if(status.length==0){
                 status=null;
-            }else{
+            }else {
                 thing[0].setPriority(priority[0]);
                 thing[0].setStatus(status[0]);
                 thing[0].setNote(Note);
@@ -191,6 +182,24 @@ public class Things_Controller {
             Logger.getLogger(Things_Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
         return thing;
+    }
+    
+    public Thing[] reminder(){
+        Thing[] thing = null;
+        
+        try {
+            thing = connect.find(Thing.class, Query.select().where("due_time = ?", date));
+            while(thing.length != 0){
+                for (Thing things : this.reminder()) {
+                    notification ntfy = new notification(things.getNote(), things.getId());
+                    ntfy.setVisible(true);
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Things_Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return thing;
+                
     }
 
 }
